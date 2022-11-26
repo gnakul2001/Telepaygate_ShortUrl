@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get( '/', function () {
-    return redirect("https://telepaygate.com");
+Route::get('/', function () {
+    return redirect(env('APP_URL'));
 });
 
+Route::get('{type}/{code}', 'ShortLinks@redirectUrlByType');
+Route::get('{code}', 'ShortLinks@redirectUrl');
 
-Route::get( '{type}/{code}',"ShortLinks@redirectUrlByType");
-Route::get( '{code}',"ShortLinks@redirectUrl");
-
-Route::post('/create_short_url',"ShortLinks@createShortUrl");
+Route::post('/create_short_url', 'ShortLinks@createShortUrl');
